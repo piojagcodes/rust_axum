@@ -1,12 +1,15 @@
 #![allow(unused)]
 
 use axum::response::Html;
+use std::net::SocketAddr;
+use axum::Router;
+use axum::routing::get;
 
 #[tokio::main]
 async fn main() {
   let routes_hello = Router::new().route(
         "/hello",
-        get(|| async { Html(<"strong>World!!!</strong>") }),
+        get(|| async { Html("Hello <strong>World!!!</strong>") }),
     );  
 
   let addr = SocketAddr::from(([127,0,0,1], 8080));
