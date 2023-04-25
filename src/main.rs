@@ -1,19 +1,22 @@
-use axum::{
-    routing::get,
-    Router,
-};
+#![allow(unused)]
+
+use axum::response::Html;
 
 #[tokio::main]
 async fn main() {
-    //build our application with a single route
-    let app = Router::new().route("/", get(hello_world));
+  let routes_hello = Router::new().route(
+        "/hello",
+        get(|| async { Html(<"strong>World!!!</strong>") }),
+    );  
 
-    axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+  let addr = SocketAddr::from(([127,0,0,1], 8080));
+  println!("->> LISTENING on {addr}\n");
+  axum::Server::bind(&addr)
+      .serve(routes_hello.into_make_service())
+      .await
+      .unwrap();
+    
 }
 
-async fn hello_world() -> String {
-    "Hello world !!!".to_owned()
-}
+
+
