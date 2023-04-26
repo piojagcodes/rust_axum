@@ -7,7 +7,9 @@ edition = "2021"
 
 [dependencies]
 axum = "0.6.9"
+cargo-watch = "8.4.0"
 tokio = {version = "1.26.0", features = ["full"]}
 
 [dev-dependencies]
 anyhow = "1"
+httpc-test = "0.1.1"
