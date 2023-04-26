@@ -1954,6 +1954,8 @@ dependencies = [
  "axum",
  "cargo-watch",
  "httpc-test",
+ "serde",
+ "serde_json",
  "tokio",
 ]
 
